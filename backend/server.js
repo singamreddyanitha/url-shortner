@@ -1,11 +1,20 @@
 import express from "express";
 import dotenv from "dotenv";
-dotenv.config();
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
+dotenv.config();
 const app = express();
 
+const corsOptions = {
+  origin: true,
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 const port = process.env.PORT || 5001;
 
